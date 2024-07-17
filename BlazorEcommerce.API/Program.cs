@@ -1,4 +1,5 @@
 using BlazorEcommerce.API.Data;
+using BlazorEcommerce.API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorEcommerce.API;
@@ -20,6 +21,8 @@ public class Program
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
+
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
         var app = builder.Build();
 
