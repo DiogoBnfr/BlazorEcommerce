@@ -11,6 +11,13 @@ public class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
+        var baseUrl = "https://localhost:7243";
+
+        builder.Services.AddScoped(sp => new HttpClient
+        {
+            BaseAddress = new Uri(baseUrl)
+        });
+
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
         await builder.Build().RunAsync();
