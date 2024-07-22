@@ -1,13 +1,12 @@
 using BlazorEcommerce.API.Data;
 using BlazorEcommerce.API.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 
 namespace BlazorEcommerce.API;
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
+public class Program {
+    public static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
@@ -17,18 +16,26 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        {
+        builder.Services.AddDbContext<ApplicationDbContext>(options => {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
+        builder.Services.AddCors();
+
         var app = builder.Build();
 
+        app.UseCors(policy =>
+            policy
+                .WithOrigins("https://localhost:7149", "http://localhost:5208")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithHeaders(HeaderNames.ContentType)
+        );
+
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
+        if (app.Environment.IsDevelopment()) {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
@@ -36,7 +43,6 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\BlazerEcommerce.Models\BlazorEcommerce.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
 </Project>

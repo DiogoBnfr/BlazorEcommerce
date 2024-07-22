@@ -3,8 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorEcommerce.API.Entities;
 
-public class Product
-{
+public class Product {
     public int Id { get; set; }
     [MaxLength(100)]
     public string Name { get; set; } = string.Empty;

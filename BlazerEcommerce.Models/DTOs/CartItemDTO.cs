@@ -1,7 +1,6 @@
 ﻿namespace BlazorEcommerce.Models.DTOs;
 
-public class CartItemDTO
-{
+public class CartItemDTO {
     public int Id { get; set; }
     public int CartId { get; set; }
     public int ProductId { get; set; }

@@ -3,14 +3,11 @@ using BlazorEcommerce.Models.DTOs;
 
 namespace BlazorEcommerce.API.Mappings;
 
-public static class MappingDTOs
-{
+public static class MappingDTOs {
     public static IEnumerable<CategoryDTO> ConvertCategoriesToDTO(
-        this IEnumerable<Category> categories)
-    {
+        this IEnumerable<Category> categories) {
         return (from category in categories
-                select new CategoryDTO
-                {
+                select new CategoryDTO {
                     Id = category.Id,
                     Name = category.Name,
                     Icon = category.Icon,
@@ -18,11 +15,9 @@ public static class MappingDTOs
     }
 
     public static IEnumerable<ProductDTO> ConvertProductsToDTO(
-        this IEnumerable<Product> products)
-    {
+        this IEnumerable<Product> products) {
         return (from product in products
-                select new ProductDTO
-                {
+                select new ProductDTO {
                     Id = product.Id,
                     Name = product.Name,
                     Description = product.Description,
@@ -34,10 +29,8 @@ public static class MappingDTOs
                 }).ToList();
     }
 
-    public static ProductDTO ConvertProductToDTO(this Product product)
-    {
-        return new ProductDTO
-        {
+    public static ProductDTO ConvertProductToDTO(this Product product) {
+        return new ProductDTO {
             Id = product.Id,
             Name = product.Name,
             Description = product.Description,
@@ -50,13 +43,11 @@ public static class MappingDTOs
     }
 
     public static IEnumerable<CartItemDTO> ConvertCartItemsToDTO(
-        this IEnumerable<CartItem> cartItems, IEnumerable<Product> products)
-    {
+        this IEnumerable<CartItem> cartItems, IEnumerable<Product> products) {
         return (from cartItem in cartItems
                 join product in products
                     on cartItem.ProductId equals product.Id
-                select new CartItemDTO
-                {
+                select new CartItemDTO {
                     Id = cartItem.Id,
                     CartId = cartItem.CartId,
                     ProductId = cartItem.ProductId,
@@ -70,10 +61,8 @@ public static class MappingDTOs
     }
 
     public static CartItemDTO ConvertCartItemDTO(
-        this CartItem cartItem, Product product)
-    {
-        return new CartItemDTO
-        {
+        this CartItem cartItem, Product product) {
+        return new CartItemDTO {
             Id = cartItem.Id,
             ProductId = cartItem.ProductId,
             ProductName = product.Name,

@@ -1,7 +1,6 @@
 ﻿namespace BlazorEcommerce.Models.DTOs;
 
-public class CategoryDTO
-{
+public class CategoryDTO {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Icon { get; set; } = string.Empty;
